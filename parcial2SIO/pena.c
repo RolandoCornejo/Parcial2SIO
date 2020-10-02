@@ -122,40 +122,10 @@ int isEmpty(Cliente** cabeza)
 { 
     return (*cabeza) == NULL; 
 } 
-  
 
-int main() 
-{ 
-  printf("\n");
-  printf("-------------------ORDEN DE LLEGADA DE CLIENTES--------------------\n");
-  printf("\n");
-    
-    pthread_t th_id;
-    clienteStr lista_clientes[]={
-            {"Maria",1,0,6},
-            {"Berta",3,1,3},
-            {"Juana",2,1,5},
-            {"Carol",4,2,6},
-            {"Julio",4,3,9},
-            {"Carla",4,4,1},
-            {"Josef",2,4,3},
-            {"Anton",1,5,8}
-        };
-    //variable que contiene el length de la lista de clientes
-    size_t n = sizeof(lista_clientes) / sizeof(lista_clientes[0]);
-    //el for loop para recorrer la lista de clientes
-    for(int i=0; i<n; i++)
-    {
-        //inicializando la lista de los datos
-        lista datos={lista_clientes[i]};
-        //creando el thread de cada cliente
-        pthread_create(&th_id, NULL, func, (void*)&datos);
-        //Que el programa espere a que termine de ejecutarse el thread para continuar
-        pthread_join(th_id,NULL);
-    }
-    
-    
-    // Creando la queue con prioridad
+void *proceso()
+{
+        // Creando la queue con prioridad
   Cliente* pq = newCliente(1, 1, 0, 6);
   push(&pq, 2, 3, 1, 3);
   push(&pq, 3, 2, 1, 5);
@@ -205,7 +175,39 @@ int main()
     printf("Promedio de espera de clientes de media prioridad: %f \n",(promP2/c2));
     printf("Promedio de espera de clientes de baja prioridad: %f \n",(promP3/c3));
     printf("Promedio de espera de clientes de prioridad cero: %f \n",(promP4/c4));
+}
+
+int main() 
+{ 
+  printf("\n");
+  printf("-------------------ORDEN DE LLEGADA DE CLIENTES--------------------\n");
+  printf("\n");
     
+    pthread_t th_id;
+    clienteStr lista_clientes[]={
+            {"Maria",1,0,6},
+            {"Berta",3,1,3},
+            {"Juana",2,1,5},
+            {"Carol",4,2,6},
+            {"Julio",4,3,9},
+            {"Carla",4,4,1},
+            {"Josef",2,4,3},
+            {"Anton",1,5,8}
+        };
+    //variable que contiene el length de la lista de clientes
+    size_t n = sizeof(lista_clientes) / sizeof(lista_clientes[0]);
+    //el for loop para recorrer la lista de clientes
+    for(int i=0; i<n; i++)
+    {
+        //inicializando la lista de los datos
+        lista datos={lista_clientes[i]};
+        //creando el thread de cada cliente
+        pthread_create(&th_id, NULL, func, (void*)&datos);
+        //Que el programa espere a que termine de ejecutarse el thread para continuar
+        pthread_join(th_id,NULL);
+    }
+    pthread_create(&th_id, NULL, proceso, NULL);
+     
     
     
        pthread_exit(NULL);
