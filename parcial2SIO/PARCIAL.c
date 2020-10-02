@@ -3,28 +3,26 @@
 #include<unistd.h>
 #include<pthread.h>
 
-//Definiendo el estructura cliente
+//Definiendo la estructura cliente
 typedef struct cliente {
     char nombre[256];
     int tiempo;
     int prioridad;
 }cliente;
-
+//Definiendo estructura que contiene los daatos para pasarlos a thread
 typedef struct lista {
             cliente actual;
             cliente *caja1;
             cliente *caja2;
    	    }lista;
-
-
-
+//el thread
 void *func(void *var)
 {
-    lista *id=(lista *)var;
+    lista *datos=(lista *)var;
     
-    printf("Cliente: %s\n", id->actual.nombre);
-    printf("Tiempo: %d minutos\n", id->actual.tiempo);
-    printf("Prioridad: %d\n", id->actual.prioridad);
+    printf("Cliente: %s\n", datos->actual.nombre);
+    printf("Tiempo: %d minutos\n", datos->actual.tiempo);
+    printf("Prioridad: %d\n", datos->actual.prioridad);
 }
 
 int main()
@@ -37,15 +35,16 @@ int main()
         };
         cliente caja1[]={0};
         cliente caja2[]={0}; 
-
-    
-    
+    //varia que contiene wl length de la lista de clientes
     size_t n = sizeof(lista_clientes) / sizeof(lista_clientes[0]);
+    //el for loop para recorrer la lista de clientes
     for(int i=0; i<n; i++)
     {
+        //inicializando la lista de los datos
         lista datos={lista_clientes[i],caja1,caja2};
- 
+        //creando el thread de cada cliente
         pthread_create(&th_id, NULL, func, (void*)&datos);
+        //Que el programa espere a que termine de ejecutarse el thread para continuar
         pthread_join(th_id,NULL);
     }
     pthread_exit(NULL);
