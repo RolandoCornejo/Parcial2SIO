@@ -1,3 +1,18 @@
+/******************************************************************************
+
+                        SISTEMAS OPERATIVOS SIO104 03l
+                     Rolando José Cornejo Torres 
+                     Paola Raquel Jiménez Torrez JT180795
+                     SIMULACIÓN DE VENTANILLA DE UN BANCO
+                     
+                     CONSIDERACIONES:
+            1. Prioridad alta: tercera edad, clientes VIP, mujeres embarazadas.
+            2. Prioridad media
+            3. Prioridad baja
+            4. Ninguna prioridad: clientes sin cuenta.
+                     
+
+*******************************************************************************/
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
@@ -9,7 +24,7 @@ typedef struct cliente {
     int tiempo;
     int prioridad;
 }cliente;
-//Definiendo estructura que contiene los daatos para pasarlos a thread
+//Definiendo estructura que contiene los datos para pasarlos a thread
 typedef struct lista {
             cliente actual;
             cliente *caja1;
@@ -35,7 +50,7 @@ int main()
         };
         cliente caja1[]={0};
         cliente caja2[]={0}; 
-    //varia que contiene wl length de la lista de clientes
+    //varia que contiene el length de la lista de clientes
     size_t n = sizeof(lista_clientes) / sizeof(lista_clientes[0]);
     //el for loop para recorrer la lista de clientes
     for(int i=0; i<n; i++)
