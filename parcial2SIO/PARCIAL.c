@@ -123,6 +123,7 @@ int isEmpty(Cliente** cabeza)
     return (*cabeza) == NULL; 
 } 
 
+//Thread de proceso en el banco
 void *proceso()
 {
         // Creando la queue con prioridad
