@@ -1,15 +1,15 @@
 /******************************************************************************
 
-                        SISTEMAS OPERATIVOS SIO104 03l
-                     Rolando José Cornejo Torres 
-                     Paola Raquel Jiménez Torrez JT180795
-                     SIMULACIÓN DE VENTANILLA DE UN BANCO
-                     
-                     CONSIDERACIONES:
-            1. Prioridad alta: tercera edad, clientes VIP, mujeres embarazadas.
-            2. Prioridad media
-            3. Prioridad baja
-            4. Ninguna prioridad: clientes sin cuenta.
+                    SISTEMAS OPERATIVOS SIO104 03l
+                 Rolando José Cornejo Torres 
+                 Paola Raquel Jiménez Torrez JT180795
+                 SIMULACIÓN DE VENTANILLA DE UN BANCO
+
+                 CONSIDERACIONES:
+        1. Prioridad alta: tercera edad, clientes VIP, mujeres embarazadas.
+        2. Prioridad media
+        3. Prioridad baja
+        4. Ninguna prioridad: clientes sin cuenta.
                      
 
 *******************************************************************************/
